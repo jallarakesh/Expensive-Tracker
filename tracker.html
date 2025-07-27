@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Expensive Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tracker.css">
+</head>
+
+
+  <body>
+    <div class="header">
+        <p class="m-0">Expensive <br> Tracker <img src="./purse.png" alt="" height="30px" width="30px"></p>
+    </div>
+    
+    <div class="input-form">
+        <div class="form-floating inputs">
+  <input type="date" class="form-control date-input" id="dateinput" placeholder="name@example.com">
+  <label for="dateinput">Date</label>
+</div>
+        <div class="form-floating  inputs ">
+  <input type="number" class="form-control amount-input" id="amountinput" placeholder="Enter amount">
+  <label for="amountinput">Amount</label>
+   </div>
+
+<select id="transcationType" name="transcationType" class="form-select inputs input-transcation-type" aria-label="Default select example">
+  <option selected>Transcation Type</option>
+  <option value="income">Income</option>
+  <option value="expense">Expense</option>
+
+</select>
+
+   <button class="btn" id="add-button" onclick="addRows()">+</button>
+  </div>
+
+<div class="cards mt-4">
+      <div class="card" >
+  <div class="card-body">
+    <h5 class="card-title">Total Income <img src="./icons8-purse-50.png" alt="" width="30px" class="image"></h5>
+    <h1 class="m-0">
+      <img src="./indian-rupee-xxl.png" alt="" width="22px">
+      <span id="TotalIncome" class="m-0">0</span>
+    </h1>
+  </div>
+</div>
+<div class="card" >
+  <div class="card-body">
+    <h5 class="card-title">Total Expense <img src="./expenses (2).png
+      " alt="" width="30px" class="image"></h5>
+    <h1 class="m-0">
+      <img src="./indian-rupee-xxl.png" alt="" width="22px">
+      <span id="TotalExpense" class="m-0">0</span>
+    </h1>
+  </div>
+</div>
+<div class="card" >
+  <div class="card-body">
+    <h5 class="card-title">Balance <img src="./commercial.png
+      " alt="" width="30px" class="image"></h5>
+    <h1 class="m-0">
+      <img src="./indian-rupee-xxl.png" alt="" width="22px">
+      <span id="Balance" class="m-0">0</span>
+    </h1>
+  </div>
+</div>
+
+</div>
+<table class="transcation-table" id="table">
+  <tr id="header-row">
+    <th>Amount</th>
+    <th>Transcation Type</th>
+    <th>Transcation Data</th>
+    <th>Action</th>
+  </tr>
+ 
+ 
+</table>   
+    
+   <script>
+    function deleteRows(row){
+      row.remove();
+
+
+    }
+
+
+      let table =document.getElementById('table')
+
+ function addRows(){
+    let date =document.getElementsByClassName('date-input')[0].value;
+    let amount =document.getElementsByClassName('amount-input')[0].value;
+    let transcationType =document.getElementsByClassName('input-transcation-type')[0].value;
+    if(!date || !amount || (transcationType !== 'income' && transcationType !== 'expense')){
+      alert("Please fill all fields!");
+      return;
+    }
+    let row = document.createElement('tr')
+    
+    let amountCell =document.createElement('td')
+    amountCell.innerText =amount;
+
+    let transcationCell =document.createElement('td')
+    transcationCell.innerText =transcationType;
+
+    let dateCell =document.createElement('td')
+    dateCell.innerText=date;
+
+    let binCell = document.createElement('td')
+
+    let deleteButton = document.createElement('button')
+    let binImage =document.createElement('img')
+    binImage.src ='./bin (1).png'
+    binImage.style.width ='30px'
+    binImage.style.height ='30px'
+   
+
+    deleteButton.append(binImage)
+    deleteButton.classList.add('delete-button')
+    deleteButton.onclick =()=>deleteRows(row)
+    binCell.append(deleteButton)
+
+    row.appendChild(amountCell)
+    row.appendChild(transcationCell)
+    row.appendChild(dateCell)
+    row.append(binCell)
+
+    table.appendChild(row)
+
+    
+
+    let totalIncome = document.getElementById('TotalIncome').innerText
+    let totalExpense = document.getElementById('TotalExpense').innerText
+    let totalBalance = document.getElementById('Balance').innerText
+
+    if(transcationType == 'income'){
+      if(totalIncome == '0'){
+        document.getElementById('TotalIncome').innerText =amount
+      }
+      else{
+       document.getElementById('TotalIncome').innerText= parseInt(totalIncome)+parseInt(amount)
+      }
+      
+      if(totalBalance == '0'){
+        document.getElementById('Balance').innerText = amount;
+
+      }
+      else{
+        document.getElementById('Balance').innerText = parseInt(totalBalance)+parseInt(amount)
+
+      }
+
+
+
+
+    }
+    else if(transcationType == 'expense'){
+      if(totalExpense == '0'){
+        document.getElementById('TotalExpense').innerText = amount
+      }
+      else{
+        document.getElementById('TotalExpense').innerText = parseInt(totalExpense)+parseInt(amount)
+      }
+
+      if(totalBalance == '0'){
+        document.getElementById('Balance').innerText = -amount;
+
+      }
+      else{
+        document.getElementById('Balance').innerText = parseInt(totalBalance)-parseInt(amount)
+
+      }
+
+
+    }
+    
+   
+
+
+  }
+
+
+
+
+   </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>  
+
+</body>
+</html>

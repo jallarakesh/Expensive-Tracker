@@ -1,0 +1,136 @@
+body{
+    font-family: "Concert One", sans-serif;
+}
+.header
+{
+    background: rgba(1,26,56);
+    color: white;
+    padding-left: 25px;
+    margin-left: 40px;
+    margin-right: 40px;
+    font-size: large;
+
+}
+.input-form
+{
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+    margin: auto;
+    border-radius: 8px;
+    box-shadow: 0px 0px 12px rgba(1,26,56);
+    margin-top: 15px;
+    padding: 25px 0px;
+}
+#add-button
+{
+    background: rgba(1,26,56);
+    height: 50px;
+    width: 50px;
+    color: white;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: x-large;
+}
+.inputs{
+    width: 30%;
+
+}
+.cards
+{
+    display: flex;
+    width: 95%;
+    margin: auto;
+   
+    justify-content: space-between;
+}
+.card
+{
+    background: rgba(1,26,56);
+    color: white;
+    height: 150px;
+    width: 18rem;
+}
+.transcation-table
+{
+   border: 1px black solid;
+    width: 95%;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0px 4px 4px rgb(0,0,0,0.5);
+    padding: 0px;
+}
+#header-row
+{
+background: rgba(1,26,56);
+
+
+}
+#header-row th 
+{
+    padding: 15px 10px;
+    color: white;
+}
+.delete-button,.delete-button:hover
+{
+    width: 50px;
+    height: 50px;
+    background: red;
+    border-radius: 50%;
+    padding-right: 5px;
+    border: none;
+}
+.delete-image
+{
+    padding-right: 80%;
+}
+@media only screen and (max-width:768px){
+.header
+{
+    background: rgba(143,147,4,0.849);
+
+} 
+.input-form
+{
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+   gap: 15px
+   ;
+}
+.inputs{
+    width: 70%;
+
+}
+#add-button
+{
+    background: rgba(143,147,0,0.849);
+    width: 70%;
+    color: white;
+    border-radius: 8px;   
+
+}
+.cards
+{
+    gap: 15px;
+   flex-wrap: wrap;
+    
+}
+.card{
+    background: rgba(143,147,4);
+    color: white;
+    height: 150px;
+    width: 150px;
+}
+.transcation-table
+{
+   margin-top: 10px;
+}
+#header-row
+{
+background: rgba(143,147,4);
+
+
+}
+}
